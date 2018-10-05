@@ -10,7 +10,6 @@ class SingleItem extends Component {
         this.props.clearSingleItem();
     }
     render(){
-        console.log('Single Item', this.props.item);
         const { item, toggleComplete, match: {params } } = this.props;
         return (
             <div>

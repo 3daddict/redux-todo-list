@@ -1,26 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import 'materialize-css/dist/css/materialize.min.css';
 import './assets/css/index.css';
-
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
-import reduxPromise from 'redux-promise';
-
+import rPromise from './middleware/r_promise';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(rootReducer, {}, applyMiddleware(reduxPromise));
+const store = createStore(rootReducer, {}, applyMiddleware(rPromise));
 
 ReactDOM.render(
     <Provider store={store}>
         <Router>
             <App />
         </Router>
-    </Provider> ,
+    </Provider>,
     document.getElementById('root')
 );
 
