@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { addListItem } from '../actions';
 
 class AddItem extends Component {
 
@@ -16,9 +18,10 @@ class AddItem extends Component {
         )
     }
 
-    saveItem = (values) => {
+    saveItem = async (values) => {
         console.log('Form Values: ', values);
-
+        await this.props.addListItem(values);
+        this.props.history.push('/');
     }
 
     render(){
@@ -60,7 +63,11 @@ function validate({title, details}){
     return errors;   
 }
 
-export default reduxForm({
+AddItem = reduxForm({
     form: 'add-item',
     validate: validate
+})(AddItem);
+
+export default connect(null, {
+    addListItem: addListItem
 })(AddItem);
